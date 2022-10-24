@@ -7,25 +7,146 @@
 }
 
 body {
-    background-color: rgb(158, 110, 82);
-    color: black;
+    background-color: rgb(88, 20, 8);
+    color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-.choice_pizza, 
-.choice_number {
-    padding: 3em;
+.titulo {
+    padding: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    }
+
+}
+
+.choice_pizza,
+.choice_number {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
 #form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
+    padding-bottom: 30px;
 }
 
+#choice {
+    height: 40px;
+    border-style: none;
+    background-color: rgb(238, 121, 11);
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#msjPizza {
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px
+}
+
+#msjPizza h3 {
+    background-color: rgb(238, 121, 11);
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px 15px;
+}
+
+#msjPizza h4 {
+    font-style: italic;
+}
+
+#myImg {
+    border-radius: 100%;
+    width: 120px;
+    height: 120px;
+}
+
+.btn_submit {
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: white;
+    color: rgb(88, 20, 8);
+    border-style: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn_submit:hover {
+    background-color: rgba(255, 255, 255, 0.445);
+}
+
+.msjError {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 30 px;
+    color: rgb(238, 121, 11);
+    padding-top: 20px;
+}
+
+p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+}
+
+.msjUltPizza {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+
+.msjUltPizza h2 {
+    color: rgb(238, 121, 11);
+}
+
+
+.msjUltPizza h4 {
+    background-color: rgb(238, 121, 11);
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px 15px; 
+}
+
+.msjUltPizza h5 {
+    font-style: italic;
+    color: rgb(238, 121, 11);
+}
+
+#myImgU {
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.msjErrorI {
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size:medium;
+    font-style: italic;
+}

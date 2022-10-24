@@ -2,38 +2,44 @@ const pizzas = [
     {
         id: 1,
         nombre: "Fugazeta",
-        ingredientes: ["muza", "cebolla"],
+        ingredientes: ["muza", " cebolla"],
         precio: 500,
+        imagen: "./images/fugazzeta.jpg",
     },
     {
         id: 2,
         nombre: "Napolitana",
-        ingredientes: ["muza", "tomate", "albahaca"],
+        ingredientes: ["muza", " tomate", " albahaca"],
         precio: 700,
+        imagen: "./images/napolitana.jpg",
     },
     {
         id: 3,
         nombre: "Cuatro Quesos",
-        ingredientes: ["muza", "roquefort", "provolone"],
+        ingredientes: ["muza", " roquefort", " provolone", " gouda"],
         precio: 1000,
+        imagen: "./images/cuatroquesos.jpg",
     },
     {
         id: 4,
         nombre: "Morrón con Jamón",
-        ingredientes: ["muza", "morrón", "jamón"],
+        ingredientes: ["muza", " morrón", " jamón"],
         precio: 1000,
+        imagen: "./images/morron_jamon.jpg",
     },
     {
         id: 5,
         nombre: "Hongos",
-        ingredientes: ["muza", "cebolla", "hongos"],
+        ingredientes: ["muza", " cebolla", " hongos"],
         precio: 1200,
+        imagen: "./images/hongos.jpg",
     },
     {
         id: 6,
         nombre: "Huevo",
-        ingredientes: ["muza", "cebolla", "salchicha", "huevo"],
+        ingredientes: ["muza", " cebolla", " salchicha", " huevo"],
         precio: 1300,
+        imagen: "./images/huevo.jpg",
     },
 
 ];
@@ -124,15 +130,35 @@ const saveLocalStorage = (pizzasList) => {
 */
 
 
-/* ENTREGA 2 */
+/* ENTREGA 3 */
 
+const formulario = document.getElementById('form');
+const ultimaPizza = JSON.parse(localStorage.getItem('pizza') || "[]")[0];
+console.log(ultimaPizza)
+if (!ultimaPizza) {
+    document.getElementById('msjPizza').innerHTML =
+    '<small class="msjErrorI">Hasta ahora no ha seleccionado ninguna pizza. Elija un número del 1 al 6...</small>';
+}
+else {
+    document.getElementById('msjPizza').innerHTML =
+
+        `
+     <p>La última pizza seleccionada fue ...</p>
+     <div class="msjUltPizza" >
+           <h2>${ultimaPizza.nombre}</h1>
+           <h4>$${ultimaPizza.precio}</h3>
+           <h5>Esta pizza viene con ${ultimaPizza.ingredientes}</h4>
+           <img id="myImgU" src="${ultimaPizza.imagen}" >
+           </div>
+               `;
+}
 const checkChoice = (numberInput) => {
     let valid = false;
     const choiceValue = numberInput;
     if (isEmpty(choiceValue)) {
-        showError(numberInput, 'Ingrese una opción');
+        showError(numberInput, '<small class="msjError">Elija un número</small>');
     } else if (!NumberValid(choiceValue)) {
-        showError(numberInput, 'La opción es incorrecta, elija un número del 1 al 6');
+        showError(numberInput, '<small class="msjError">La opción es incorrecta, elija un número del 1 al 6</small>');
     } else {
         valid = true;
     }
@@ -141,55 +167,37 @@ const checkChoice = (numberInput) => {
 
 const isEmpty = (value) => value == '';
 
-const NumberValid = (choice) => choice <= pizzas.length && choice >= 1; 
+const NumberValid = (choice) => choice <= pizzas.length && choice >= 1;
 
-const showError = (input, message) => {;
-    document.querySelector('.msjError').innerHTML= message;
+const showError = (input, message) => {
+    ;
+    document.getElementById('msjPizza').innerHTML = message;
 }
 
-document.getElementById('form').addEventListener('submit', validar);
+formulario.addEventListener('submit', validar);
 
 function validar(evt) {
+
     evt.preventDefault();
+
     let numberInput = document.getElementById('choice').value;
     const isChoiceValid = checkChoice(numberInput);
     const isFormValid = isChoiceValid
     if (isFormValid) {
-        form.submit();
         const pizzaCh = pizzas.filter(pizza => pizza.id == numberInput);
-        document.getElementById('msjContainer').innerHTML = pizzaCh.map(showMsj).join(''); 
-            }
+        document.getElementById('msjPizza').innerHTML = pizzaCh.map(showMsj).join('');
+        localStorage.setItem('pizza', JSON.stringify(pizzaCh));
+    }
+    formulario.reset();
 }
 
 const showMsj = (pizza) =>
-      
-     `
-         <div >
-           <h1>${pizza.nombre}</h1>
-           <h3>${pizza.precio}</h3>
-           </div>     
-       `;
- 
-/*
+    `
+         <img id="myImg" src="${pizza.imagen}" >
+           <h1>- ${pizza.nombre} -</h1>
+           <h3>$${pizza.precio}</h3>
+           <h4>Esta pizza viene con ${pizza.ingredientes}</h4>
+           
+    `;
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const isChoiceValid = checkChoice();
-
-    const isFormValid = isChoiceValid
-    if (isFormValid) {
-        form.submit();
-        const pizzaCh = pizzas.filter(pizza => pizza.id == 3); //TEST
-        console.log(`${pizzaCh.lenght}`);
-        document.msjContainer.innerHTML = pizzaCh.map(showMsj).join('');      
-    }
-})
-*/
-
-/*
-const renderMsj = () => {
-    msjContainer.innerHTML = pizzas.map(showMsj).join('');
-}
-*/
 
